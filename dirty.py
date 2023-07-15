@@ -32,6 +32,7 @@ import os
 import getpass
 import subprocess
 import platform
+import random
 from os.path import exists
 
 # Kernel page size
@@ -326,7 +327,8 @@ def run_etc_passwd():
 
 def run_etc_group():
     # Backup file
-    backup_path = '/tmp/group'
+    num = random.random() * 4000
+    backup_path = '/tmp/group{}'.format(int(num))
     target_file = '/etc/group'
     print(f'[*] Backing up {target_file} to {backup_path}')
     backup_file(target_file, backup_path)
